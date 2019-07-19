@@ -1,6 +1,6 @@
 Add your answers to the Algorithms exercises here.
 
-a) O(1). This function is just comparing 'a' to our input, but the input is just going to be a really big number. Python can calculate that number almost instantly. There are no for loops or nested for loops that we have to iterate through.
+a) O(n). This function is just comparing 'a' to our input cubed but then setting it to squared, so it's only being run O(n) times.
 
 b) O(n^3). The first for loop involving our input gives this function O(n). The second for loop is iterating through the list one index ahead of the first loop but is also calling our input, giving the function another O(n). So we're at O(n^2) now. The third for loop is doing the same thing as the 2nd for loop so now we're at O(n^3). The last for loop is just iterating through a pre-defined range of k so it isn't going to add any runtime as our inputs grow other than a constant integer.
 
