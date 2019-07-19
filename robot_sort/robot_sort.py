@@ -110,12 +110,81 @@ class SortingRobot:
         #                 arr[i], arr[i+1] = arr[i+1], arr[i]
         #                 swaps_occurred = True
 
-        #     return arr  
+        #     return arr
 
-        # Swap index[0] for None. Now holding first index value with the rest of the robot._list - 1 all integers
+        '''
+        # a go left helper function which will shift the robot all the way to the left again
+        def go_left():
+            while robot.can_move_left():
+                robot.move_left()
+                print(robot._position)
+            # else:
+            #     robot.set_light_off()
+
+        # set light on to return true
+        robot.set_light_on()
+
+        while robot.light_is_on():
+
+            #set light off to only loop through once
+            # robot.set_light_off()
+
+            #loop through the list
+            for i in range(0, len(robot._list)-1):
+                robot.move_right()
+                print(robot._position)
+                if robot.can_move_right() is False:
+                    # robot.set_light_off()
+                    go_left()
+                    # print(robot._position)
+        '''
         
 
-        return robot._list
+        #     Swap index[0] for None. Now holding first index value with the rest of the robot._list - 1 all integers
+        if robot._item is None:
+            robot.swap_item()
+            robot._list.remove(None)
+            print(robot._list)
+
+        # Loop through the list
+        for i in range(len(robot._list)-1):
+
+            # As long as you're not at the end of the list
+            while robot.can_move_right():
+                
+                # Check if the item number of the position you're on is larger than your item.
+                # If it's larger then swap the item and move to the right one spot
+                if robot.compare_item() == -1:
+                    robot.swap_item()
+                    robot.move_right()
+                    # print(f"swapped a second item: {robot._item}")
+
+                # If it's smaller or equal, just move one spot to the right
+                else:
+                    robot.move_right()
+                    # print(f"didn't swap another item: {robot._item}")
+
+            # insert largest number at the largest index
+            else:
+                if robot._item:
+                    robot._list.append(robot._item)
+                    robot._item = None
+                    robot._position = 0
+                    robot.sort()
+                    break
+                else:
+                    robot.move_left()
+                    print(f"did this append?: {robot._list}")
+                    print(f"what's in item now?: {robot._item}")
+                    break
+
+            return robot._list
+
+                
+                
+
+
+        # return robot._list
 
 
 
@@ -128,4 +197,4 @@ if __name__ == "__main__":
     robot = SortingRobot(l)
 
     robot.sort()
-    print(robot._list)
+    # print(robot._list)
