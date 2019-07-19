@@ -112,34 +112,49 @@ class SortingRobot:
 
         #     return arr
 
-        '''
+
         # a go left helper function which will shift the robot all the way to the left again
         def go_left():
             while robot.can_move_left():
                 robot.move_left()
                 print(robot._position)
-            # else:
-            #     robot.set_light_off()
+            else:
+                robot.set_light_off()
 
         # set light on to return true
         robot.set_light_on()
 
         while robot.light_is_on():
 
-            #set light off to only loop through once
-            # robot.set_light_off()
-
             #loop through the list
             for i in range(0, len(robot._list)-1):
-                robot.move_right()
-                print(robot._position)
-                if robot.can_move_right() is False:
-                    # robot.set_light_off()
-                    go_left()
-                    # print(robot._position)
-        '''
-        
 
+                if robot.compare_item() == None:
+                    robot.swap_item()
+                    robot.move_right()
+                    robot.set_light_on()
+                
+                elif robot.compare_item() == -1:
+                    robot.swap_item()
+                    robot.move_right()
+                    robot.set_light_on()
+                elif robot.compare_item() == 1:
+                    robot.move_right()
+                    # robot.set_light_off()
+                else:
+                    robot.move_right()
+                    # robot.set_light_off()
+
+
+                if robot.can_move_right() is False:
+                    robot.swap_item()
+                    go_left()
+             
+        print(robot._item)
+        return robot._list
+
+        
+        """
         #     Swap index[0] for None. Now holding first index value with the rest of the robot._list - 1 all integers
         if robot._item is None:
             robot.swap_item()
@@ -179,12 +194,11 @@ class SortingRobot:
                     break
 
             return robot._list
-
+            """
                 
                 
 
 
-        # return robot._list
 
 
 
@@ -197,4 +211,4 @@ if __name__ == "__main__":
     robot = SortingRobot(l)
 
     robot.sort()
-    # print(robot._list)
+    print(robot._list)
