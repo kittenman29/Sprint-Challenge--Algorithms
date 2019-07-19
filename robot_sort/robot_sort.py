@@ -99,6 +99,25 @@ class SortingRobot:
         # Fill this out
         pass
 
+        #bubble sort
+        # def bubble_sort( arr ):
+        #     swaps_occurred = True
+        #     while swaps_occurred:
+        #         swaps_occurred = False
+        #         for i in range(0, len(arr)-1):
+        #             if arr[i] > arr[i+1]:
+        #                 # swap
+        #                 arr[i], arr[i+1] = arr[i+1], arr[i]
+        #                 swaps_occurred = True
+
+        #     return arr  
+
+        # Swap index[0] for None. Now holding first index value with the rest of the robot._list - 1 all integers
+        
+
+        return robot._list
+
+
 
 if __name__ == "__main__":
     # Test our your implementation from the command line
