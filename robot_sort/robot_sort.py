@@ -114,41 +114,82 @@ class SortingRobot:
 
 
         # a go left helper function which will shift the robot all the way to the left again
-        def go_left():
-            while robot.can_move_left():
-                robot.move_left()
-                print(robot._position)
-            else:
-                robot.set_light_off()
+        # def go_left():
+        #     while robot.can_move_left():
+        #         robot.move_left()
+        #         print(robot._position)
+        #     else:
+        #         robot.set_light_off()
 
-        # set light on to return true
-        robot.set_light_on()
+        # # set light on to return true
+        # robot.set_light_on()
 
-        while robot.light_is_on():
+        # while robot.light_is_on():
 
-            #loop through the list
-            for i in range(0, len(robot._list)-1):
+        #     robot.set_light_off
 
-                if robot.compare_item() == None:
-                    robot.swap_item()
-                    robot.move_right()
-                    robot.set_light_on()
+        #     #loop through the list
+        #     for i in range(0, len(robot._list)-1):
+
+        #         if robot.compare_item() == None:
+        #             robot.swap_item()
+        #             robot.move_right()
+        #             robot.set_light_on()
                 
-                elif robot.compare_item() == -1:
+        #         elif robot.compare_item() == -1:
+        #             robot.swap_item()
+        #             robot.move_right()
+        #             robot.swap_item()
+        #             robot.move_left()
+        #             robot.swap_item()
+        #             robot.set_light_on()
+        #             robot.move_right()
+
+        #         elif robot.compare_item() == 1:
+        #             robot.move_right()
+        #             # robot.set_light_off()
+        #         else:
+        #             robot.move_right()
+        #             # robot.set_light_off()
+
+
+        #         # if robot.can_move_right() is False:
+        #         #     robot.swap_item()
+        #         #     go_left()
+
+        while robot.light_is_on() is False:
+
+            #sweep across the list to the right
+            while robot.can_move_right():
+
+                robot.swap_item()
+                robot.move_right()
+                # print(robot._position)
+                # print(robot._item)
+
+                # if the item in your pocket is bigger than the 
+                if robot.compare_item() == 1:
+                    # swap it twice, not once
+                    robot.swap_item()
+                    robot.move_left()
                     robot.swap_item()
                     robot.move_right()
                     robot.set_light_on()
-                elif robot.compare_item() == 1:
-                    robot.move_right()
-                    # robot.set_light_off()
-                else:
-                    robot.move_right()
-                    # robot.set_light_off()
+                    # print(robot._position)
+                    # print(robot._item)
 
+            while robot.can_move_left():
 
-                if robot.can_move_right() is False:
+                robot.swap_item()
+                robot.move_left()
+
+                if robot.compare_item() == -1:
+                    robot.set_light_off()
+                    robot.move_right()
                     robot.swap_item()
-                    go_left()
+                    robot.move_left()
+                    # print(robot._position)
+                    # print(robot._item)
              
         print(robot._item)
         return robot._list
